@@ -14,7 +14,7 @@ for i in range(100000000):
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-req = requests.get('https://news.google.com/articles/CBMiMWh0dHBzOi8vd3d3LmJiYy5jb20vbmV3cy93b3JsZC11cy1jYW5hZGEtNTM2MjY1NDbSATVodHRwczovL3d3dy5iYmMuY29tL25ld3MvYW1wL3dvcmxkLXVzLWNhbmFkYS01MzYyNjU0Ng?hl=en-US&gl=US&ceid=US%3Aen')
+req = requests.get('https://www.bbc.com/news/world-us-canada-53626546')
 
 html = req.text
 
