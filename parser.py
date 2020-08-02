@@ -18,7 +18,7 @@ my_titles = soup.select(
 data = {}
 
 for title in my_titles:
-    data[title.text] = title.get('href')
+    data[title.text] = title.get('href') + ',' + header + ',' + status + ',' + is_ok
 
 with open(os.path.join(BASE_DIR, 'result.json'), 'w+') as json_file:
     json.dump(data, json_file)
