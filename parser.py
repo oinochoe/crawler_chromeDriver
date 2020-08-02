@@ -1,6 +1,11 @@
 ## parser.py
 import requests
 from bs4 import BeautifulSoup
+import json
+import os
+
+## Python 파일의 위치
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 ## HTTP GET Requests
 req = requests.get('http://blog.irangyeongmin.com/')
@@ -16,12 +21,17 @@ my_titles = soup.select(
     'div.PostList__post-list___IWx36 > h2 > a'
 )
 
+data = {}
+
 ## my_titles는 list 객체
 for title in my_titles:
     ## Tag 안의 텍스트
     print(title.test)
     ## Tag의 속성을 가져오기(ex: href속성)
     print(title.get('href'))
+
+with open(os.path.join(BASE_DIR, 'result.json'), 'w+') as json_file:
+    json.dump(data, json_file)
 
 ## HTTP Header 가져오기
 header = req.headers
