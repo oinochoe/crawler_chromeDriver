@@ -2,32 +2,20 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import os
-import timeit
-
-start_time = timeit.default_timer()
+import time
+import datetime
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-sum = 0
+start = time.time()
 
-for i in range(100000000):
-    sum += i
-
-
-req = requests.get('https://www.washingtonpost.com/us-policy/2020/08/03/congress-stimulus-coronavirus-trump/')
-
-terminate_time = timeit.default_timer()
-print("%fsec" % (terminate_time - start_time))
-
-
+req = requests.get('https://news.google.com/articles/CAIiEOiW0x9C3ZmcabpDppguU_AqFQgEKg0IACoGCAowrqkBMKBFMLKAAg?hl=en-US&gl=US&ceid=US%3Aen')
 html = req.text
-
-
 soup = BeautifulSoup(html, 'html.parser')
 
 my_titles = soup.select(
-    '.font--body.font-copy'
+    '.fs-article p'
 )
 
 data = {}
@@ -37,6 +25,11 @@ for title in my_titles:
 
 with open(os.path.join(BASE_DIR, 'result.json'), 'w+') as json_file:
     json.dump(data, json_file)
+
+later = time.time()
+print("google news url")
+print(later - start)
+
 
 header = req.headers
 
